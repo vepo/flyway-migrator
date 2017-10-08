@@ -1,7 +1,7 @@
 #!/bin/bash
 
 server_info() {
-    OUTPUT=$(./flyway -X -user=$DB_USER -password=$DB_PASSWORD -url=jdbc:$DB_URL info 2> err.txt)
+    OUTPUT=$(./flyway -user=$DB_USER -password=$DB_PASSWORD -url=jdbc:$DB_URL info 2> err.txt)
     RESULT=$?
 }
 
@@ -21,7 +21,5 @@ while [[ $(is_server_listening; echo $?) -eq 0 ]]; do
     server_info
 done
 
-OUTPUT=$(./flyway -X -user=$DB_USER -password=$DB_PASSWORD -url=jdbc:$DB_URL migrate)
+OUTPUT=$(./flyway -user=$DB_USER -password=$DB_PASSWORD -url=jdbc:$DB_URL migrate)
 RESULT=$?
-
-echo "RESULT: $RESULT $OUTPUT"
